@@ -1,0 +1,169 @@
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/UI }
+using { /Fortnite.com/Game }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+
+
+# A Verse-authored creative device that can be placed in a level
+Income_Arena := class(creative_device):
+    var TotalMoneyA : int = 0
+    var TotalMoneyB : int = 0
+    var TotalMoneyC : int = 0
+    var TotalMoneyD : int = 0
+
+    var TotalIncomeA : int = 0
+    var TotalIncomeB : int = 0
+    var TotalIncomeC : int = 0
+    var TotalIncomeD : int = 0
+
+    var TimeStamp : float = 0.0
+
+    CreatureCost : int = 2
+    CreatureCostTwo : int = 4
+    CreatureCostThree : int = 6
+    CreatureCostFour : int = 8
+    CreatureCostFive : int = 8
+    CreatureCostSix : int = 32
+    CreatureCostSeven : int = 32
+    CreatureCostEight : int = 48
+    CreatureCostNine : int = 48
+    CreatureCostTen : int = 96
+    CreatureCostEleven : int = 96
+    CreatureCostTwelve : int = 120
+    CreatureCostThirteen : int = 600
+
+    CreatureSpawnerCost : int = 1800
+
+    Income : int = 1
+    IncomeTwo : int = 2
+    IncomeThree : int = 3
+    IncomeFour : int = 4
+    IncomeFive : int = 4
+    IncomeSix : int = 16
+    IncomeSeven : int = 16
+    IncomeEight : int =24
+    IncomeNine : int = 24
+    IncomeTen : int = 48
+    IncomeEleven : int = 48
+    IncomeTwelve : int = 60
+    IncomeThirteen : int = 300
+
+    VendingMachineGroupCost : int = 10
+    VendingMachineGroupCostTwo: int = 30
+    VendingMachineGroupCostThree : int = 60
+    VendingMachineGroupCostFour : int = 120
+    VendingMachineGroupCostFive : int = 240
+
+    BalanceSheetText<localizes>(BalanceSheetMessage : string) : message = "{BalanceSheetMessage}"
+
+# Player A Devices
+    @editable PlayerSpawnerA : player_spawner_device = player_spawner_device{}
+
+    @editable BillboardA : billboard_device = billboard_device{}
+
+    @editable APlacerButton : button_device = button_device{}
+    @editable APlacerButtonTwo : button_device = button_device{}
+    @editable APlacerButtonThree : button_device = button_device{}
+    @editable APlacerButtonFour : button_device = button_device{}
+    @editable APlacerButtonFive : button_device = button_device{}
+    @editable APlacerButtonSix : button_device = button_device{}
+    @editable APlacerButtonSeven : button_device = button_device{}
+    @editable APlacerButtonEight : button_device = button_device{}
+    @editable APlacerButtonNine : button_device = button_device{}
+    @editable APlacerButtonTen : button_device = button_device{}
+    @editable APlacerButtonEleven : button_device = button_device{}
+    @editable APlacerButtonTwelve : button_device = button_device{}
+    @editable APlacerButtonThirteen : button_device = button_device{}
+
+    @editable AFiendB : creature_placer_device = creature_placer_device{}
+    @editable AFiendC : creature_placer_device = creature_placer_device{}
+    @editable AFiendD : creature_placer_device = creature_placer_device{}
+    @editable AIceFiendB : creature_placer_device = creature_placer_device{}
+    @editable AIceFiendC : creature_placer_device = creature_placer_device{}
+    @editable AIceFiendD : creature_placer_device = creature_placer_device{}
+    @editable APoisonFiendB : creature_placer_device = creature_placer_device{}
+    @editable APoisonFiendC : creature_placer_device = creature_placer_device{}
+    @editable APoisonFiendD : creature_placer_device = creature_placer_device{}
+    @editable ARangedFiendB : creature_placer_device = creature_placer_device{}
+    @editable ARangedFiendC : creature_placer_device = creature_placer_device{}
+    @editable ARangedFiendD : creature_placer_device = creature_placer_device{}
+    @editable AIceRangedFiendB : creature_placer_device = creature_placer_device{}
+    @editable AIceRangedFiendC : creature_placer_device = creature_placer_device{}
+    @editable AIceRangedFiendD : creature_placer_device = creature_placer_device{}
+    @editable ARedFiendB : creature_placer_device = creature_placer_device{}
+    @editable ARedFiendC : creature_placer_device = creature_placer_device{}
+    @editable ARedFiendD : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceFiendB : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceFiendC : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceFiendD : creature_placer_device = creature_placer_device{}
+    @editable ABruteB : creature_placer_device = creature_placer_device{}
+    @editable ABruteC : creature_placer_device = creature_placer_device{}
+    @editable ABruteD : creature_placer_device = creature_placer_device{}
+    @editable AIceBruteB : creature_placer_device = creature_placer_device{}
+    @editable AIceBruteC : creature_placer_device = creature_placer_device{}
+    @editable AIceBruteD : creature_placer_device = creature_placer_device{}
+    @editable ARedBruteB : creature_placer_device = creature_placer_device{}
+    @editable ARedBruteC : creature_placer_device = creature_placer_device{}
+    @editable ARedBruteD : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceBruteB : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceBruteC : creature_placer_device = creature_placer_device{}
+    @editable AMajorIceBruteD : creature_placer_device = creature_placer_device{}
+    @editable AExplodingBruteB : creature_placer_device = creature_placer_device{}
+    @editable AExplodingBruteC : creature_placer_device = creature_placer_device{}
+    @editable AExplodingBruteD : creature_placer_device = creature_placer_device{}
+    @editable AMegaBruteB : creature_placer_device = creature_placer_device{}
+    @editable AMegaBruteC : creature_placer_device = creature_placer_device{}
+    @editable AMegaBruteD : creature_placer_device = creature_placer_device{}
+
+    @editable ACreatureSpawnerButton : button_device = button_device{}
+
+    @editable ACreatureSpawner : creature_spawner_device = creature_spawner_device{}
+
+    @editable AVendingMachineButton : button_device = button_device{}
+    @editable AVendingMachineButtonTwo : button_device = button_device{}
+    @editable AVendingMachineButtonThree : button_device = button_device{}
+    @editable AVendingMachineButtonFour : button_device = button_device{}
+    @editable AVendingMachineButtonFive : button_device = button_device{}
+
+    @editable AMachine : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwo : vending_machine_device = vending_machine_device{}
+    @editable AMachineThree : vending_machine_device = vending_machine_device{}
+    @editable AMachineFour : vending_machine_device = vending_machine_device{}
+    @editable AMachineFive : vending_machine_device = vending_machine_device{}
+    @editable AMachineSix : vending_machine_device = vending_machine_device{}
+    @editable AMachineSeven : vending_machine_device = vending_machine_device{}
+    @editable AMachineEight : vending_machine_device = vending_machine_device{}
+    @editable AMachineNine : vending_machine_device = vending_machine_device{}
+    @editable AMachineTen : vending_machine_device = vending_machine_device{}
+    @editable AMachineEleven : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwelve : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineFourteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineFifteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineSixteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineSeventeen : vending_machine_device = vending_machine_device{}
+    @editable AMachineEighteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineNineteen : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwenty : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentyone : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentytwo : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentythree : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentyfour : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentyfive : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentysix : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentyseven : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentyeight : vending_machine_device = vending_machine_device{}
+    @editable AMachineTwentynine : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirty : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtyone : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtytwo : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtythree : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtyfour : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtyfive : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtysix : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtyseven : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtyeight : vending_machine_device = vending_machine_device{}
+    @editable AMachineThirtynine : vending_machine_device = vending_machine_device{}
+    @editable AMachineFourty : vending_machine_device = vending_machine_device{}
