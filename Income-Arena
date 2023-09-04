@@ -63,45 +63,45 @@ Income_Arena := class(creative_device):
 
     @editable BillboardA : billboard_device = billboard_device{}
 
-    @editable AFiendButtonB : button_device = button_device{}
-    @editable AFiendButtonC : button_device = button_device{}
-    @editable AFiendButtonD : button_device = button_device{}
-    @editable AIceFiendButtonB : button_device = button_device{}
-    @editable AIceFiendButtonC : button_device = button_device{}
-    @editable AIceFiendButtonD : button_device = button_device{}
-    @editable APoisonFiendButtonB : button_device = button_device{}
-    @editable APoisonFiendButtonC : button_device = button_device{}
-    @editable APoisonFiendButtonD : button_device = button_device{}
-    @editable ARangedFiendButtonB : button_device = button_device{}
-    @editable ARangedFiendButtonC : button_device = button_device{}
-    @editable ARangedFiendButtonD : button_device = button_device{}
-    @editable AIceRangedFiendButtonB : button_device = button_device{}
-    @editable AIceRangedFiendButtonC : button_device = button_device{}
-    @editable AIceRangedFiendButtonD : button_device = button_device{}
-    @editable ARedFiendButtonB : button_device = button_device{}
-    @editable ARedFiendButtonC : button_device = button_device{}
-    @editable ARedFiendButtonD : button_device = button_device{}
-    @editable AMajorIceFiendButtonB : button_device = button_device{}
-    @editable AMajorIceFiendButtonC : button_device = button_device{}
-    @editable AMajorIceFiendButtonD : button_device = button_device{}
-    @editable ABruteButtonB : button_device = button_device{}
-    @editable ABruteButtonC : button_device = button_device{}
-    @editable ABruteButtonD : button_device = button_device{}
-    @editable AIceBruteButtonB : button_device = button_device{}
-    @editable AIceBruteButtonC : button_device = button_device{}
-    @editable AIceBruteButtonD : button_device = button_device{}
-    @editable ARedBruteButtonB : button_device = button_device{}
-    @editable ARedBruteButtonC : button_device = button_device{}
-    @editable ARedBruteButtonD : button_device = button_device{}
-    @editable AMajorIceBruteButtonB : button_device = button_device{}
-    @editable AMajorIceBruteButtonC : button_device = button_device{}
-    @editable AMajorIceBruteButtonD : button_device = button_device{}
-    @editable AExploderBruteButtonB : button_device = button_device{}
-    @editable AExploderBruteButtonC : button_device = button_device{}
-    @editable AExploderBruteButtonD : button_device = button_device{}
-    @editable AMegabruteButtonB : button_device = button_device{}
-    @editable AMegabruteButtonC : button_device = button_device{}
-    @editable AMegabruteButtonD : button_device = button_device{}
+    @editable AFiendBButton : button_device = button_device{}
+    @editable AFiendCButton : button_device = button_device{}
+    @editable AFiendDButton : button_device = button_device{}
+    @editable AIceFiendBButton : button_device = button_device{}
+    @editable AIceFiendCButton : button_device = button_device{}
+    @editable AIceFiendDButton : button_device = button_device{}
+    @editable APoisonFiendBButton : button_device = button_device{}
+    @editable APoisonFiendCButton : button_device = button_device{}
+    @editable APoisonFiendDButton : button_device = button_device{}
+    @editable ARangedFiendBButton : button_device = button_device{}
+    @editable ARangedFiendCButton : button_device = button_device{}
+    @editable ARangedFiendDButton : button_device = button_device{}
+    @editable AIceRangedFiendBButton : button_device = button_device{}
+    @editable AIceRangedFiendCButton : button_device = button_device{}
+    @editable AIceRangedFiendDButton : button_device = button_device{}
+    @editable ARedFiendBButton : button_device = button_device{}
+    @editable ARedFiendCButton : button_device = button_device{}
+    @editable ARedFiendDButton : button_device = button_device{}
+    @editable AMajorIceFiendBButton : button_device = button_device{}
+    @editable AMajorIceFiendCButton : button_device = button_device{}
+    @editable AMajorIceFiendDButton : button_device = button_device{}
+    @editable ABruteBButton : button_device = button_device{}
+    @editable ABruteCButton : button_device = button_device{}
+    @editable ABruteDButton : button_device = button_device{}
+    @editable AIceBruteBButton : button_device = button_device{}
+    @editable AIceBruteCButton : button_device = button_device{}
+    @editable AIceBruteDButton : button_device = button_device{}
+    @editable ARedBruteBButton : button_device = button_device{}
+    @editable ARedBruteCButton : button_device = button_device{}
+    @editable ARedBruteDButton : button_device = button_device{}
+    @editable AMajorIceBruteBButton : button_device = button_device{}
+    @editable AMajorIceBruteCButton : button_device = button_device{}
+    @editable AMajorIceBruteDButton : button_device = button_device{}
+    @editable AExploderBruteBButton : button_device = button_device{}
+    @editable AExploderBruteCButton : button_device = button_device{}
+    @editable AExploderBruteDButton : button_device = button_device{}
+    @editable AMegabruteBButton : button_device = button_device{}
+    @editable AMegabruteCButton : button_device = button_device{}
+    @editable AMegabruteDButton : button_device = button_device{}
 
     @editable AFiendB : creature_placer_device = creature_placer_device{}
     @editable AFiendC : creature_placer_device = creature_placer_device{}
@@ -231,65 +231,91 @@ Income_Arena := class(creative_device):
                 #     BillboardD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
         
         # Player A Actions
-            APlacerButton.InteractedWithEvent.Subscribe(APlacerButtonPressed)
-            APlacerButtonTwo.InteractedWithEvent.Subscribe(APlacerButtonTwoPressed)
-            APlacerButtonThree.InteractedWithEvent.Subscribe(APlacerButtonThreePressed)
-            APlacerButtonFour.InteractedWithEvent.Subscribe(APlacerButtonFourPressed)
-            APlacerButtonFive.InteractedWithEvent.Subscribe(APlacerButtonFivePressed)
-            APlacerButtonSix.InteractedWithEvent.Subscribe(APlacerButtonSixPressed)
-            APlacerButtonSeven.InteractedWithEvent.Subscribe(APlacerButtonSevenPressed)
-            APlacerButtonEight.InteractedWithEvent.Subscribe(APlacerButtonEightPressed)
-            APlacerButtonNine.InteractedWithEvent.Subscribe(APlacerButtonNinePressed)
-            APlacerButtonTen.InteractedWithEvent.Subscribe(APlacerButtonTenPressed)
-            APlacerButtonEleven.InteractedWithEvent.Subscribe(APlacerButtonElevenPressed)
-            APlacerButtonTwelve.InteractedWithEvent.Subscribe(APlacerButtonTwelvePressed)
-            APlacerButtonThirteen.InteractedWithEvent.Subscribe(APlacerButtonThirteenPressed)
+            AFiendBButton.InteractedWithEvent.Subscribe(AFiendBButtonPressed)
+            AFiendCButton.InteractedWithEvent.Subscribe(AFiendCButtonPressed)
+            AFiendDButton.InteractedWithEvent.Subscribe(AFiendDButtonPressed)
+            AIceFiendBButton.InteractedWithEvent.Subscribe(AIceFiendBButtonPressed)
+            AIceFiendCButton.InteractedWithEvent.Subscribe(AIceFiendCButtonPressed)
+            AIceFiendDButton.InteractedWithEvent.Subscribe(AIceFiendDButtonPressed)
+            APoisonFiendBButton.InteractedWithEvent.Subscribe(APoisonFiendBButtonPressed)
+            APoisonFiendCButton.InteractedWithEvent.Subscribe(APoisonFiendCButtonPressed)
+            APoisonFiendDButton.InteractedWithEvent.Subscribe(APoisonFiendDButtonPressed)
+            ARangedFiendBButton.InteractedWithEvent.Subscribe(ARangedFiendBButtonPressed)
+            ARangedFiendCButton.InteractedWithEvent.Subscribe(ARangedFiendCButtonPressed)
+            ARangedFiendDButton.InteractedWithEvent.Subscribe(ARangedFiendDButtonPressed)
+            AIceRangedFiendBButton.InteractedWithEvent.Subscribe(AIceRangedFiendBButtonPressed)
+            AIceRangedFiendCButton.InteractedWithEvent.Subscribe(AIceRangedFiendCButtonPressed)
+            AIceRangedFiendDButton.InteractedWithEvent.Subscribe(AIceRangedFiendDButtonPressed)
+            ARedFiendBButton.InteractedWithEvent.Subscribe(ARedFiendBButtonPressed)
+            ARedFiendCButton.InteractedWithEvent.Subscribe(ARedFiendCButtonPressed)
+            ARedFiendDButton.InteractedWithEvent.Subscribe(ARedFiendDButtonPressed)
+            AMajorIceFiendBButton.InteractedWithEvent.Subscribe(AMajorIceFiendBButtonPressed)
+            AMajorIceFiendCButton.InteractedWithEvent.Subscribe(AMajorIceFiendCButtonPressed)
+            AMajorIceFiendDButton.InteractedWithEvent.Subscribe(AMajorIceFiendDButtonPressed)
+            ABurteBButton.InteractedWithEvent.Subscribe(ABurteBButtonPressed)
+            ABurteCButton.InteractedWithEvent.Subscribe(ABurteCButtonPressed)
+            ABurteDButton.InteractedWithEvent.Subscribe(ABurteDButtonPressed)
+            AIceBruteBButton.InteractedWithEvent.Subscribe(AIceBruteBButtonPressed)
+            AIceBruteCButton.InteractedWithEvent.Subscribe(AIceBruteCButtonPressed)
+            AIceBruteDButton.InteractedWithEvent.Subscribe(AIceBruteDButtonPressed)
+            ARedBruteBButton.InteractedWithEvent.Subscribe(ARedBruteBButtonPressed)
+            ARedBruteCButton.InteractedWithEvent.Subscribe(ARedBruteCButtonPressed)
+            ARedBruteDButton.InteractedWithEvent.Subscribe(ARedBruteDButtonPressed)
+            AMajorIceBruteBButton.InteractedWithEvent.Subscribe(AMajorIceBruteBButtonPressed)
+            AMajorIceBruteCButton.InteractedWithEvent.Subscribe(AMajorIceBruteCButtonPressed)
+            AMajorIceBruteDButton.InteractedWithEvent.Subscribe(AMajorIceBruteDButtonPressed)
+            AExploderBruteBButton.InteractedWithEvent.Subscribe(AExploderBruteBButtonPressed)
+            AExploderBruteCButton.InteractedWithEvent.Subscribe(AExploderBruteCButtonPressed)
+            AExploderBruteDButton.InteractedWithEvent.Subscribe(AExploderBruteDButtonPressed)
+            AMegaBruteBButton.InteractedWithEvent.Subscribe(AMegaBruteBButtonPressed)
+            AMegaBruteCButton.InteractedWithEvent.Subscribe(AMegaBruteCButtonPressed)
+            AMegaBruteDButton.InteractedWithEvent.Subscribe(AMegaBruteDButtonPressed)
 
-            CreaturePlacer.EliminatedEvent.Subscribe(EnableButton)
-            CreaturePlacerTwo.EliminatedEvent.Subscribe(EnableButton)
-            CreaturePlacerThree.EliminatedEvent.Subscribe(EnableButton)
-            CreaturePlacerFour.EliminatedEvent.Subscribe(EnableButtonTwo)
-            CreaturePlacerFive.EliminatedEvent.Subscribe(EnableButtonTwo)
-            CreaturePlacerSix.EliminatedEvent.Subscribe(EnableButtonTwo)
-            CreaturePlacerSeven.EliminatedEvent.Subscribe(EnableButtonThree)
-            CreaturePlacerEight.EliminatedEvent.Subscribe(EnableButtonThree)
-            CreaturePlacerNine.EliminatedEvent.Subscribe(EnableButtonThree)
-            CreaturePlacerTen.EliminatedEvent.Subscribe(EnableButtonFour)
-            CreaturePlacerEleven.EliminatedEvent.Subscribe(EnableButtonFour)
-            CreaturePlacerTwelve.EliminatedEvent.Subscribe(EnableButtonFour)
-            CreaturePlacerThirteen.EliminatedEvent.Subscribe(EnableButtonFive)
-            CreaturePlacerFourteen.EliminatedEvent.Subscribe(EnableButtonFive)
-            CreaturePlacerFifteen.EliminatedEvent.Subscribe(EnableButtonFive)
-            CreaturePlacerSixteen.EliminatedEvent.Subscribe(EnableButtonSix)
-            CreaturePlacerSeventeen.EliminatedEvent.Subscribe(EnableButtonSix)
-            CreaturePlacerEighteen.EliminatedEvent.Subscribe(EnableButtonSix)
-            CreaturePlacerNineteen.EliminatedEvent.Subscribe(EnableButtonSeven)
-            CreaturePlacerTwenty.EliminatedEvent.Subscribe(EnableButtonSeven)
-            CreaturePlacerTwentyone.EliminatedEvent.Subscribe(EnableButtonSeven)
-            CreaturePlacerTwentytwo.EliminatedEvent.Subscribe(EnableButtonEight)
-            CreaturePlacerTwentythree.EliminatedEvent.Subscribe(EnableButtonEight)
-            CreaturePlacerTwentyfour.EliminatedEvent.Subscribe(EnableButtonEight)
-            CreaturePlacerTwentyfive.EliminatedEvent.Subscribe(EnableButtonNine)
-            CreaturePlacerTwentysix.EliminatedEvent.Subscribe(EnableButtonNine)
-            CreaturePlacerTwentyseven.EliminatedEvent.Subscribe(EnableButtonNine)
-            CreaturePlacerTwentyeight.EliminatedEvent.Subscribe(EnableButtonTen)
-            CreaturePlacerTwentynine.EliminatedEvent.Subscribe(EnableButtonTen)
-            CreaturePlacerThirty.EliminatedEvent.Subscribe(EnableButtonTen)
-            CreaturePlacerThirtyone.EliminatedEvent.Subscribe(EnableButtonEleven)
-            CreaturePlacerThirtytwo.EliminatedEvent.Subscribe(EnableButtonEleven)
-            CreaturePlacerThirtythree.EliminatedEvent.Subscribe(EnableButtonEleven)
-            CreaturePlacerThirtyfour.EliminatedEvent.Subscribe(EnableButtonTwelve)
-            CreaturePlacerThirtyfive.EliminatedEvent.Subscribe(EnableButtonTwelve)
-            CreaturePlacerThirtysix.EliminatedEvent.Subscribe(EnableButtonTwelve)
-            CreaturePlacerThirtyseven.EliminatedEvent.Subscribe(EnableButtonThirteen)
-            CreaturePlacerThirtyeight.EliminatedEvent.Subscribe(EnableButtonThirteen)
-            CreaturePlacerThirtynine.EliminatedEvent.Subscribe(EnableButtonThirteen)
+            AFiendB.EliminatedEvent.Subscribe(EnableAFiendBButton)
+            AFiendC.EliminatedEvent.Subscribe(EnableAFiendCButton)
+            AFiendD.EliminatedEvent.Subscribe(EnableAFiendDButton)
+            AIceFiendB.EliminatedEvent.Subscribe(EnableAIceFiendBButton)
+            AIceFiendC.EliminatedEvent.Subscribe(EnableAIceFiendCButton)
+            AIceFiendD.EliminatedEvent.Subscribe(EnableAIceFiendDButton)
+            APoisonFiendB.EliminatedEvent.Subscribe(EnableAPoisonFiendBButton)
+            APoisonFiendC.EliminatedEvent.Subscribe(EnableAPoisonFiendCButton)
+            APoisonFiendD.EliminatedEvent.Subscribe(EnableAPoisonFiendDButton)
+            ARangedFiendB.EliminatedEvent.Subscribe(EnableARangedFiendBButton)
+            ARangedFiendC.EliminatedEvent.Subscribe(EnableARangedFiendCButton)
+            ARangedFiendD.EliminatedEvent.Subscribe(EnableARangedFiendDButton)
+            AIceRangedFiendB.EliminatedEvent.Subscribe(EnableAIceRangedFiendBButton)
+            AIceRangedFiendC.EliminatedEvent.Subscribe(EnableAIceRangedFiendCButton)
+            AIceRangedFiendD.EliminatedEvent.Subscribe(EnableAIceRangedFiendDButton)
+            ARedFiendB.EliminatedEvent.Subscribe(EnableARedFiendBButton)
+            ARedFiendC.EliminatedEvent.Subscribe(EnableARedFiendCButton)
+            ARedFiendD.EliminatedEvent.Subscribe(EnableARedFiendDButton)
+            AMajorIceFiendB.EliminatedEvent.Subscribe(EnableAMajorIceFiendBButton)
+            AMajorIceFiendC.EliminatedEvent.Subscribe(EnableAMajorIceFiendCButton)
+            AMajorIceFiendD.EliminatedEvent.Subscribe(EnableAMajorIceFiendDButton)
+            ABruteB.EliminatedEvent.Subscribe(EnableABruteBButton)
+            ABruteC.EliminatedEvent.Subscribe(EnableABruteCButton)
+            ABruteD.EliminatedEvent.Subscribe(EnableABruteDButton)
+            AIceBruteB.EliminatedEvent.Subscribe(EnableAIceBruteBButton)
+            AIceBruteC.EliminatedEvent.Subscribe(EnableAIceBruteCButton)
+            AIceBruteD.EliminatedEvent.Subscribe(EnableAIceBruteDButton)
+            ARedBruteB.EliminatedEvent.Subscribe(EnableARedBruteBButton)
+            ARedBruteC.EliminatedEvent.Subscribe(EnableARedBruteCButton)
+            ARedBruteD.EliminatedEvent.Subscribe(EnableARedBruteDButton)
+            AMajorIceBruteB.EliminatedEvent.Subscribe(EnableAMajorIceBruteBButton)
+            AMajorIceBruteC.EliminatedEvent.Subscribe(EnableAMajorIceBruteCButton)
+            AMajorIceBruteD.EliminatedEvent.Subscribe(EnableAMajorIceBruteDButton)
+            AExploderBruteB.EliminatedEvent.Subscribe(EnableAExploderBruteBButton)
+            AExploderBruteC.EliminatedEvent.Subscribe(EnableAExploderBruteCButton)
+            AExploderBruteD.EliminatedEvent.Subscribe(EnableAExploderBruteDButton)
+            AMegabruteB.EliminatedEvent.Subscribe(EnableAMegabruteBButton)
+            AMegabruteC.EliminatedEvent.Subscribe(EnableAMegabruteCButton)
+            AMegabruteD.EliminatedEvent.Subscribe(EnableAMegabruteDButton)
 
-            VendingMachineButton.InteractedWithEvent.Subscribe(ActivateVendingMachine)
-            VendingMachineButtonTwo.InteractedWithEvent.Subscribe(ActivateVendingMachineTwo)
-            VendingMachineButtonThree.InteractedWithEvent.Subscribe(ActivateVendingMachineThree)
-            VendingMachineButtonFour.InteractedWithEvent.Subscribe(ActivateVendingMachineFour)
-            VendingMachineButtonFive.InteractedWithEvent.Subscribe(ActivateVendingMachineFive)
+            AVendingMachineButton.InteractedWithEvent.Subscribe(ActivateVendingMachine)
+            AVendingMachineButtonTwo.InteractedWithEvent.Subscribe(ActivateVendingMachineTwo)
+            AVendingMachineButtonThree.InteractedWithEvent.Subscribe(ActivateVendingMachineThree)
+            AVendingMachineButtonFour.InteractedWithEvent.Subscribe(ActivateVendingMachineFour)
+            AVendingMachineButtonFive.InteractedWithEvent.Subscribe(ActivateVendingMachineFive)
 
             # CreatureSpawnerButtonA.InteractedWithEvent.Subscribe(ActivateCreatureSpawnerBCD)
 
