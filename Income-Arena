@@ -382,7 +382,7 @@ Income_Arena := class(creative_device):
             AVendingMachineButtonFour.InteractedWithEvent.Subscribe(ActivateVendingMachineFour)
             AVendingMachineButtonFive.InteractedWithEvent.Subscribe(ActivateVendingMachineFive)
 
-            # CreatureSpawnerButtonA.InteractedWithEvent.Subscribe(ActivateCreatureSpawnerBCD)
+            # ACreatureSpawnerButton.InteractedWithEvent.Subscribe(ActivateCreatureSpawnerBCD)
 
         # Player B Actions
         
