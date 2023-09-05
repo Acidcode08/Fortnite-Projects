@@ -258,7 +258,7 @@ Income_Arena := class(creative_device):
                 Sleep(30.0)
                 set TotalMoneyA += TotalIncomeA
                     Print("Player 1 Income: +{TotalIncomeA}")
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
                 # set TotalMoneyB += TotalIncomeB
                 #     Print("Player 2 Income: +{TotalIncomeB}")
                 #     BillboardB.SetText(BalanceSheetText("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
