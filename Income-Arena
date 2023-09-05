@@ -61,7 +61,7 @@ Income_Arena := class(creative_device):
 # Player A Devices
     @editable PlayerSpawnerA : player_spawner_device = player_spawner_device{}
 
-    @editable BillboardA : billboard_device = billboard_device{}
+    @editable BalanceSheetA : billboard_device = billboard_device{}
 
     @editable ASelfFiendButton : button_device = button_device{}
     @editable AFiendBButton : button_device = button_device{}
@@ -246,10 +246,10 @@ Income_Arena := class(creative_device):
             set TotalIncomeC = 1
             set TotalIncomeD = 1
 
-            BillboardA.SetText(BalanceSheetText("Money: {TotalMoneyA}  Income: {TotalIncomeA}"))
-            # BillboardB.SetText(BalanceSheetText("Money: {TotalMoneyB}  Income: {TotalIncomeB}"))
-            # BillboardC.SetText(BalanceSheetText("Money: {TotalMoneyC}  Income: {TotalIncomeC}"))
-            # BillboardD.SetText(BalanceSheetText("Money: {TotalMoneyD}  Income: {TotalIncomeD}"))
+            BalanceSheetA.SetText(BalanceSheetText("Money: {TotalMoneyA}  Income: {TotalIncomeA}"))
+            # BalanceSheetB.SetText(BalanceSheetText("Money: {TotalMoneyB}  Income: {TotalIncomeB}"))
+            # BalanceSheetC.SetText(BalanceSheetText("Money: {TotalMoneyC}  Income: {TotalIncomeC}"))
+            # BalanceSheetD.SetText(BalanceSheetText("Money: {TotalMoneyD}  Income: {TotalIncomeD}"))
 
             AddIncome()
 
