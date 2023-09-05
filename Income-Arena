@@ -394,344 +394,178 @@ Income_Arena := class(creative_device):
 
 
     # Player A Functions
-        # PlacerButton System
-        PlacerButtonPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCost) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        # ASelfFiendButton System
+        ASelfFiendButtonPressed(Agent : agent) : void=
+            if (TotalMoneyA < CreatureCost) {BalanceSheetA.SetText(BalanceSheet("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+            # need to show "not enough money" on UI
             else:
-                spawn {SpawnGroup()}
+                spawn {SpawnASelfFiend()}
                 set TotalMoneyA -= CreatureCost
                 set TotalIncomeA += Income
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    APlacerButton.Disable()
-
-        SpawnGroup()<suspends> : void=
-            CreaturePlacer.Spawn()
-            CreaturePlacerTwo.Spawn()
-            CreaturePlacerThree.Spawn()
-
-        EnableButton(Agent : ?agent) : void=
-            PlacerButton.Enable()
+                    BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    ASelfFiendButton.Disable()
         
-        # PlacerButtonTwo System
-        PlacerButtonTwoPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostTwo) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        SpawnASelfFiend()<suspend> : void=
+            ASelfFiend,ASelfFiendTwo.Spawn()
+
+        EnableASelfFiendButton(Agent : agnet) : void=
+            ASelfFiendButton.Enable()
+
+        # AFiendBButton System
+        AFiendBButtonPressed(Agent : agent) : void=
+            if (TotalMoneyA < CreatureCost) {BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))} 
+            # need to show "not enough money" on UI
             else:
-                spawn {SpawnGroupTwo()}
-                set TotalMoneyA -= CreatureCostTwo
-                set TotalIncomeA += IncomeTwo
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonTwo.Disable()
+                spawn {SpawnAFiendB()}
+                set TotalMoneyA -= CreatureCost
+                set TotalIncomeA += Income
+                    BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    AFiendBButton.Disable()
 
-        SpawnGroupTwo()<suspends> : void=
-            CreaturePlacerFour.Spawn()
-            CreaturePlacerFive.Spawn()
-            CreaturePlacerSix.Spawn()
+        SpawnAFiendB()<suspends> : void=
+            AFiendB.Spawn()
 
-        EnableButtonTwo(Agent : ?agent) : void=
-            PlacerButtonTwo.Enable()
+        EnableAFiendBButton(Agent : ?agent) : void=
+            AFiendBButton.Enable()
         
-        # PlacerButtonThree System
-        PlacerButtonThreePressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostThree) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        # AFiendCButton System
+        AFiendCButtonPressed(Agent : agent) : void=
+            if (TotalMoneyA < CreatureCost) {BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))} 
+            # need to show "not enough money" on UI
             else:
-                spawn {SpawnGroupThree()}
-                set TotalMoneyA -= CreatureCostThree
-                set TotalIncomeA += IncomeThree
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonThree.Disable()
+                spawn {SpawnAFiendC()}
+                set TotalMoneyA -= CreatureCost
+                set TotalIncomeA += Income
+                    BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    AFiendCButton.Disable()
 
-        SpawnGroupThree()<suspends> : void=
-            CreaturePlacerSeven.Spawn()
-            CreaturePlacerEight.Spawn()
-            CreaturePlacerNine.Spawn()
+        SpawnAFiendC()<suspends> : void=
+            AFiendC.Spawn()
 
-        EnableButtonThree(Agent : ?agent) : void=
-            PlacerButtonThree.Enable()
+        EnableAFiendCButton(Agent : ?agent) : void=
+            AFiendCButton.Enable()
 
-        # PlacerButtonFour System
-        PlacerButtonFourPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostFour) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        # AFiendDButton System
+        AFiendDButtonPressed(Agent : agent) : void=
+            if (TotalMoneyA < CreatureCost) {BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))} 
+            # need to show "not enough money" on UI
             else:
-                spawn {SpawnGroupFour()}
-                set TotalMoneyA -= CreatureCostFour
-                set TotalIncomeA += IncomeFour
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonFour.Disable()
+                spawn {SpawnAFiendD()}
+                set TotalMoneyA -= CreatureCost
+                set TotalIncomeA += Income
+                    BalanceSheetA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    AFiendDButton.Disable()
 
-        SpawnGroupFour()<suspends> : void=
-            CreaturePlacerTen.Spawn()
-            CreaturePlacerEleven.Spawn()
-            CreaturePlacerTwelve.Spawn()
+        SpawnAFiendD()<suspends> : void=
+            AFiendD.Spawn()
 
-        EnableButtonFour(Agent : ?agent) : void=
-            PlacerButtonFour.Enable()
-        
-        # PlacerButtonFive System
-        PlacerButtonFivePressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostFive) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupFive()}
-                set TotalMoneyA -= CreatureCostFive
-                set TotalIncomeA += IncomeFive
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonFive.Disable()
-
-        SpawnGroupFive()<suspends> : void=
-            CreaturePlacerThirteen.Spawn()
-            CreaturePlacerFourteen.Spawn()
-            CreaturePlacerFifteen.Spawn()
-
-        EnableButtonFive(Agent : ?agent) : void=
-            PlacerButtonFive.Enable()
-        
-        # PlacerButtonSix System
-        PlacerButtonSixPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostSix) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupSix()}
-                set TotalMoneyA -= CreatureCostSix
-                set TotalIncomeA += IncomeSix
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonSix.Disable()
-
-        SpawnGroupSix()<suspends> : void=
-            CreaturePlacerSixteen.Spawn()
-            CreaturePlacerSeventeen.Spawn()
-            CreaturePlacerEighteen.Spawn()
-
-        EnableButtonSix(Agent : ?agent) : void=
-            PlacerButtonSix.Enable()
-
-        # PlacerButtonSeven System
-        PlacerButtonSevenPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostSeven) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupSeven()}
-                set TotalMoneyA -= CreatureCostSeven
-                set TotalIncomeA += IncomeSeven
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonSeven.Disable()
-
-        SpawnGroupSeven()<suspends> : void=
-            CreaturePlacerNineteen.Spawn()
-            CreaturePlacerTwenty.Spawn()
-            CreaturePlacerTwentyone.Spawn()
-
-        EnableButtonSeven(Agent : ?agent) : void=
-            PlacerButtonSeven.Enable()
-
-        # PlacerButtonEight System
-        PlacerButtonEightPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostEight) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupEight()}
-                set TotalMoneyA -= CreatureCostEight
-                set TotalIncomeA += IncomeEight
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonEight.Disable()
-
-        SpawnGroupEight()<suspends> : void=
-            CreaturePlacerTwentytwo.Spawn()
-            CreaturePlacerTwentythree.Spawn()
-            CreaturePlacerTwentyfour.Spawn()
-
-        EnableButtonEight(Agent : ?agent) : void=
-            PlacerButtonEight.Enable()
-
-        # PlacerButtonNine System
-        PlacerButtonNinePressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostNine) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupNine()}
-                set TotalMoneyA -= CreatureCostNine
-                set TotalIncomeA += IncomeNine
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonNine.Disable()
-
-        SpawnGroupNine()<suspends> : void=
-            CreaturePlacerTwentyfive.Spawn()
-            CreaturePlacerTwentysix.Spawn()
-            CreaturePlacerTwentyseven.Spawn()
-
-        EnableButtonNine(Agent : ?agent) : void=
-            PlacerButtonNine.Enable()
-
-        # PlacerButtonTen System
-        PlacerButtonTenPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostTen) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupTen()}
-                set TotalMoneyA -= CreatureCostTen
-                set TotalIncomeA += IncomeTen
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonTen.Disable()
-
-        SpawnGroupTen()<suspends> : void=
-            CreaturePlacerTwentyeight.Spawn()
-            CreaturePlacerTwentynine.Spawn()
-            CreaturePlacerThirty.Spawn()
-
-        EnableButtonTen(Agent : ?agent) : void=
-            PlacerButtonTen.Enable()
-
-        # PlacerButtonElevn System
-        PlacerButtonElevenPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostEleven) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupEleven()}
-                set TotalMoneyA -= CreatureCostEleven
-                set TotalIncomeA += IncomeEleven
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonEleven.Disable()
-
-        SpawnGroupEleven()<suspends> : void=
-            CreaturePlacerThirtyone.Spawn()
-            CreaturePlacerThirtytwo.Spawn()
-            CreaturePlacerThirtythree.Spawn()
-
-        EnableButtonEleven(Agent : ?agent) : void=
-            PlacerButtonEleven.Enable()
-
-        # PlacerButtonTwelve System
-        PlacerButtonTwelvePressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostTwelve) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupTwelve()}
-                set TotalMoneyA -= CreatureCostTwelve
-                set TotalIncomeA += IncomeTwelve
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonTwelve.Disable()
-
-        SpawnGroupTwelve()<suspends> : void=
-            CreaturePlacerThirtyfour.Spawn()
-            CreaturePlacerThirtyfive.Spawn()
-            CreaturePlacerThirtysix.Spawn()
-
-        EnableButtonTwelve(Agent : ?agent) : void=
-            PlacerButtonTwelve.Enable()
-
-        # PlacerButtonThirteen System
-        PlacerButtonThirteenPressed(Agent : agent) : void=
-            if (TotalMoneyA < CreatureCostThirteen) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {SpawnGroupThirteen()}
-                set TotalMoneyA -= CreatureCostThirteen
-                set TotalIncomeA += IncomeThirteen
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlacerButtonThirteen.Disable()
-
-        SpawnGroupThirteen()<suspends> : void=
-            CreaturePlacerThirtyseven.Spawn()
-            CreaturePlacerThirtyeight.Spawn()
-            CreaturePlacerThirtynine.Spawn()
-
-        EnableButtonThirteen(Agent : ?agent) : void=
-            PlacerButtonThirteen.Enable()
+        EnableAFiendBButton(Agent : ?agent) : void=
+            AFiendDButton.Enable()
 
         # VendingMachine
-        ActivateVendingMachine(Agent : agent) : void=
-            if (TotalMoneyA < VendingMachineGroupCost) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {EnableVendingMachineGroup()}
-                set TotalMoneyA -= VendingMachineGroupCost
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    VendingMachineButton.Disable()
+        // ActivateVendingMachine(Agent : agent) : void=
+        //     if (TotalMoneyA < VendingMachineGroupCost) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {EnableVendingMachineGroup()}
+        //         set TotalMoneyA -= VendingMachineGroupCost
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+        //             VendingMachineButton.Disable()
         
-        EnableVendingMachineGroup()<suspends> : void=
-            VendingMachine.Enable()
-            VendingMachineTwo.Enable()
-            VendingMachineThree.Enable()
-            VendingMachineFour.Enable()
-            VendingMachineFive.Enable()
-            VendingMachineSix.Enable()
-            VendingMachineSeven.Enable()
-            VendingMachineEight.Enable()
+        // EnableVendingMachineGroup()<suspends> : void=
+        //     VendingMachine.Enable()
+        //     VendingMachineTwo.Enable()
+        //     VendingMachineThree.Enable()
+        //     VendingMachineFour.Enable()
+        //     VendingMachineFive.Enable()
+        //     VendingMachineSix.Enable()
+        //     VendingMachineSeven.Enable()
+        //     VendingMachineEight.Enable()
         
-        # VendingMachineTwo
-        ActivateVendingMachineTwo(Agent : agent) : void=
-            if (TotalMoneyA < VendingMachineGroupCostTwo) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {EnableVendingMachineGroupTwo()}
-                set TotalMoneyA -= VendingMachineGroupCostTwo
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    VendingMachineButtonTwo.Disable()
+        // # VendingMachineTwo
+        // ActivateVendingMachineTwo(Agent : agent) : void=
+        //     if (TotalMoneyA < VendingMachineGroupCostTwo) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {EnableVendingMachineGroupTwo()}
+        //         set TotalMoneyA -= VendingMachineGroupCostTwo
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+        //             VendingMachineButtonTwo.Disable()
 
-        EnableVendingMachineGroupTwo()<suspends> : void=
-            VendingMachineNine.Enable()
-            VendingMachineTen.Enable()
-            VendingMachineEleven.Enable()
-            VendingMachineTwelve.Enable()
-            VendingMachineThirteen.Enable()
-            VendingMachineFourteen.Enable()
-            VendingMachineFifteen.Enable()
-            VendingMachineSixteen.Enable()
+        // EnableVendingMachineGroupTwo()<suspends> : void=
+        //     VendingMachineNine.Enable()
+        //     VendingMachineTen.Enable()
+        //     VendingMachineEleven.Enable()
+        //     VendingMachineTwelve.Enable()
+        //     VendingMachineThirteen.Enable()
+        //     VendingMachineFourteen.Enable()
+        //     VendingMachineFifteen.Enable()
+        //     VendingMachineSixteen.Enable()
 
-        # VendingMachineThree
-        ActivateVendingMachineThree(Agent : agent) : void=
-            if (TotalMoneyA < VendingMachineGroupCostThree) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {EnableVendingMachineGroupThree()}
-                set TotalMoneyA -= VendingMachineGroupCostThree
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    VendingMachineButtonThree.Disable()
+        // # VendingMachineThree
+        // ActivateVendingMachineThree(Agent : agent) : void=
+        //     if (TotalMoneyA < VendingMachineGroupCostThree) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {EnableVendingMachineGroupThree()}
+        //         set TotalMoneyA -= VendingMachineGroupCostThree
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+        //             VendingMachineButtonThree.Disable()
 
-        EnableVendingMachineGroupThree()<suspends> : void=
-            VendingMachineSeventeen.Enable()
-            VendingMachineEighteen.Enable()
-            VendingMachineNineteen.Enable()
-            VendingMachineTwenty.Enable()
-            VendingMachineTwentyone.Enable()
-            VendingMachineTwentytwo.Enable()
-            VendingMachineTwentythree.Enable()
-            VendingMachineTwentyfour.Enable()
+        // EnableVendingMachineGroupThree()<suspends> : void=
+        //     VendingMachineSeventeen.Enable()
+        //     VendingMachineEighteen.Enable()
+        //     VendingMachineNineteen.Enable()
+        //     VendingMachineTwenty.Enable()
+        //     VendingMachineTwentyone.Enable()
+        //     VendingMachineTwentytwo.Enable()
+        //     VendingMachineTwentythree.Enable()
+        //     VendingMachineTwentyfour.Enable()
 
-        # VendingMachineFour
-        ActivateVendingMachineFour(Agent : agent) : void=
-            if (TotalMoneyA < VendingMachineGroupCostFour) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {EnableVendingMachineGroupFour()}
-                set TotalMoneyA -= VendingMachineGroupCostFour
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    VendingMachineButtonFour.Disable()
+        // # VendingMachineFour
+        // ActivateVendingMachineFour(Agent : agent) : void=
+        //     if (TotalMoneyA < VendingMachineGroupCostFour) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {EnableVendingMachineGroupFour()}
+        //         set TotalMoneyA -= VendingMachineGroupCostFour
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+        //             VendingMachineButtonFour.Disable()
 
-        EnableVendingMachineGroupFour()<suspends> : void=
-            VendingMachineTwentyfive.Enable()
-            VendingMachineTwentysix.Enable()
-            VendingMachineTwentyseven.Enable()
-            VendingMachineTwentyeight.Enable()
-            VendingMachineTwentynine.Enable()
-            VendingMachineThirty.Enable()
-            VendingMachineThirtyone.Enable()
-            VendingMachineThirtytwo.Enable()
+        // EnableVendingMachineGroupFour()<suspends> : void=
+        //     VendingMachineTwentyfive.Enable()
+        //     VendingMachineTwentysix.Enable()
+        //     VendingMachineTwentyseven.Enable()
+        //     VendingMachineTwentyeight.Enable()
+        //     VendingMachineTwentynine.Enable()
+        //     VendingMachineThirty.Enable()
+        //     VendingMachineThirtyone.Enable()
+        //     VendingMachineThirtytwo.Enable()
 
-        # VendingMachineFive
-        ActivateVendingMachineFive(Agent : agent) : void=
-            if (TotalMoneyA < VendingMachineGroupCostFive) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-            else:
-                spawn {EnableVendingMachineGroupFive()}
-                set TotalMoneyA -= VendingMachineGroupCostFive
-                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    VendingMachineButtonFive.Disable()
+        // # VendingMachineFive
+        // ActivateVendingMachineFive(Agent : agent) : void=
+        //     if (TotalMoneyA < VendingMachineGroupCostFive) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {EnableVendingMachineGroupFive()}
+        //         set TotalMoneyA -= VendingMachineGroupCostFive
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+        //             VendingMachineButtonFive.Disable()
 
-        EnableVendingMachineGroupFive()<suspends> : void=
-            VendingMachineThirtythree.Enable()
-            VendingMachineThirtyfour.Enable()
-            VendingMachineThirtyfive.Enable()
-            VendingMachineThirtysix.Enable()
-            VendingMachineThirtyseven.Enable()
-            VendingMachineThirtyeight.Enable()
-            VendingMachineThirtynine.Enable()
-            VendingMachineFourty.Enable()
+        // EnableVendingMachineGroupFive()<suspends> : void=
+        //     VendingMachineThirtythree.Enable()
+        //     VendingMachineThirtyfour.Enable()
+        //     VendingMachineThirtyfive.Enable()
+        //     VendingMachineThirtysix.Enable()
+        //     VendingMachineThirtyseven.Enable()
+        //     VendingMachineThirtyeight.Enable()
+        //     VendingMachineThirtynine.Enable()
+        //     VendingMachineFourty.Enable()
+            
+        // # CreatureSpawnerButtonA
+        // ActivateCreatureSpawnerBCD(Agent : agent) : void=
+        //     if (TotalMoneyA < CreatureSpawnerCost) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
+        //     else:
+        //         spawn {ActivateCreatureSpawnerGroup()}
+        //         set TotalMoneyA -= CreatureSpawnerCost
+        //             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
 
-        # # CreatureSpawnerButtonA
-        # ActivateCreatureSpawnerBCD(Agent : agent) : void=
-        #     if (TotalMoneyA < CreatureSpawnerCost) {BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))}
-        #     else:
-        #         spawn {ActivateCreatureSpawnerGroup()}
-        #         set TotalMoneyA -= CreatureSpawnerCost
-        #             BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-
-        # ActivateCreatureSpawnerGroup()<suspends> : void=
-        #     CreatureSpawnerB.Enable()
-        #     CreatureSpawnerC.Enable()
-        #     CreatureSpawnerD.Enable()
+        // ActivateCreatureSpawnerGroup()<suspends> : void=
+        //     CreatureSpawnerB.Enable()
+        //     CreatureSpawnerC.Enable()
+        //     CreatureSpawnerD.Enable()
