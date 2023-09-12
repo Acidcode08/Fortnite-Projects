@@ -463,7 +463,7 @@ Income_Arena := class(creative_device):
         SpawnAFiendD()<suspends> : void=
             AFiendD.Spawn()
 
-        EnableAFiendBButton(Agent : ?agent) : void=
+        EnableAFiendDButton(Agent : ?agent) : void=
             AFiendDButton.Enable()
             set TotalMoneyD += Income
                 BalanceSheetD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
