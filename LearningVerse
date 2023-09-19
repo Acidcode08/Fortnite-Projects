@@ -1,0 +1,678 @@
+
+
+using { /Fortnite.com/Devices }
+using { /Fortnite.com/UI }
+using { /Fortnite.com/Game }
+using { /Verse.org/Simulation }
+using { /UnrealEngine.com/Temporary/Diagnostics }
+using { /UnrealEngine.com/Temporary/SpatialMath }
+using { /UnrealEngine.com/Temporary/UI }
+
+# A Verse-authored creative device that can be placed in a level
+Income_Arena := class(creative_device):
+    var TotalMoneyA : int = 0
+    var TotalMoneyB : int = 0
+    var TotalMoneyC : int = 0
+    var TotalMoneyD : int = 0
+
+    var TotalIncomeA : int = 0
+    var TotalIncomeB : int = 0
+    var TotalIncomeC : int = 0
+    var TotalIncomeD : int = 0
+
+    var TimeStamp : float = 0.0
+
+    VendingMachineGroupCost : int = 10
+    VendingMachineGroupCostTwo : int = 30
+    VendingMachineGroupCostThree : int = 90
+    VendingMachineGroupCostFour : int = 270
+    VendingMachineGroupCostFive : int = 810
+
+    CreatureCost : int = 1
+    CreatureCostTwo : int = 2
+    CreatureCostThree : int = 4
+    CreatureCostFour : int = 8
+    CreatureCostFive : int = 8
+    CreatureCostSix : int = 32
+    CreatureCostSeven : int = 32
+    CreatureCostEight : int = 48
+    CreatureCostNine : int = 48
+    CreatureCostTen : int = 96
+    CreatureCostEleven : int = 96
+    CreatureCostTwelve : int = 120
+    CreatureCostThirteen : int = 600
+    CreatureSpawnerCost : int = 1800
+
+    Income : int = 1
+    IncomeTwo : int = 2
+    IncomeThree : int = 4
+    IncomeFour : int = 8
+    IncomeFive : int = 8
+    IncomeSix : int = 32
+    IncomeSeven : int = 32
+    IncomeEight : int = 48
+    IncomeNine : int = 48
+    IncomeTen : int = 96
+    IncomeEleven : int = 96
+    IncomeTwelve : int = 120
+    IncomeThirteen : int = 600
+
+    @editable var PlayerSpawnA : player_spawner_device = player_spawner_device{}
+    @editable var PlayerSpawnB : player_spawner_device = player_spawner_device{}
+    # @editable var PlayerSpawnC : player_spawner_device = player_spawner_device{}
+    # @editable var PlayerSpawnD : player_spawner_device = player_spawner_device{}
+
+    @editable var PlacerButton : button_device = button_device{}
+    @editable var PlacerButtonTwo : button_device = button_device{}
+    @editable var PlacerButtonThree : button_device = button_device{}
+    @editable var PlacerButtonFour : button_device = button_device{}
+    @editable var PlacerButtonFive : button_device = button_device{}
+    @editable var PlacerButtonSix : button_device = button_device{}
+    @editable var PlacerButtonSeven : button_device = button_device{}
+    @editable var PlacerButtonEight : button_device = button_device{}
+    @editable var PlacerButtonNine : button_device = button_device{}
+    @editable var PlacerButtonTen : button_device = button_device{}
+    @editable var PlacerButtonEleven : button_device = button_device{}
+    @editable var PlacerButtonTwelve : button_device = button_device{}
+    @editable var PlacerButtonThirteen : button_device = button_device{}
+
+    @editable var CreaturePlacer : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwo : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThree : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerFour : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerFive : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerSix : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerSeven : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerEight : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerNine : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerEleven : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwelve : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerFourteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerFifteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerSixteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerSeventeen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerEighteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerNineteen : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwenty : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentyone : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentytwo : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentythree : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentyfour : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentyfive : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentysix : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentyseven : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentyeight : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerTwentynine : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirty : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtyone : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtytwo : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtythree : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtyfour : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtyfive : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtysix : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtyseven : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtyeight : creature_placer_device = creature_placer_device{}
+    @editable var CreaturePlacerThirtynine : creature_placer_device = creature_placer_device{}
+
+    @editable var CreatureSpawnerButton : button_device = button_device{}
+    @editable var CreatureSpawnerButtonTwo : button_device = button_device{}
+    @editable var CreatureSpawnerButtonThree : button_device = button_device{}
+    @editable var CreatureSpawnerButtonFour : button_device = button_device{}
+
+    @editable var CreatureSpawner : creature_spawner_device = creature_spawner_device{}
+
+    @editable var VendingMachineButton : button_device = button_device{}
+    @editable var VendingMachineButtonTwo : button_device = button_device{}
+    @editable var VendingMachineButtonThree : button_device = button_device{}
+    @editable var VendingMachineButtonFour : button_device = button_device{}
+    @editable var VendingMachineButtonFive : button_device = button_device{}
+
+    @editable var VendingMachine : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwo : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThree : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineFour : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineFive : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineSix : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineSeven : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineEight : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineNine : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineEleven : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwelve : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineFourteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineFifteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineSixteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineSeventeen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineEighteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineNineteen : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwenty : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentyone : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentytwo : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentythree : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentyfour : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentyfive : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentysix : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentyseven : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentyeight : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineTwentynine : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirty : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtyone : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtytwo : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtythree : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtyfour : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtyfive : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtysix : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtyseven : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtyeight : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineThirtynine : vending_machine_device = vending_machine_device{}
+    @editable var VendingMachineFourty : vending_machine_device = vending_machine_device{}
+
+    @editable var BillboardA : billboard_device = billboard_device{}
+    @editable var BillboardB : billboard_device = billboard_device{}
+    @editable var BillboardC : billboard_device = billboard_device{}
+    @editable var BillboardD : billboard_device = billboard_device{}
+
+    BalanceSheetText<localizes>(BalanceSheetMessage : string) : message = "{BalanceSheetMessage}"
+    TextForPlayerAUI<localizes>(TextForPlayerAUIMessage : string) : message = "{TextForPlayerAUIMessage}"
+    TextForPlayerBUI<localizes>(TextForPlayerBUIMessage : string) : message = "{TextForPlayerBUIMessage}"
+
+    PlayerAUI : text_block = text_block{}
+    PlayerBUI : text_block = text_block{}
+
+    # Runs when the device is started in a running game
+    OnBegin<override>()<suspends>:void=
+
+        set TotalMoneyA = 1
+        set TotalMoneyB = 10
+        set TotalMoneyC = 10
+        set TotalMoneyD = 10
+
+        set TotalIncomeA = 1
+        set TotalIncomeB = 1
+        set TotalIncomeC = 1
+        set TotalIncomeD = 1
+
+        BillboardA.SetText(BalanceSheetText("Money: {TotalMoneyA}  Income: {TotalIncomeA}"))
+        BillboardB.SetText(BalanceSheetText("Money: {TotalMoneyB}  Income: {TotalIncomeB}"))
+    #    BillboardC.SetText(BalanceSheetText("Money: {TotalMoneyC}  Income: {TotalIncomeC}"))
+    #    BillboardD.SetText(BalanceSheetText("Money: {TotalMoneyD}  Income: {TotalIncomeD}"))
+    
+        PlayerSpawnA.SpawnedEvent.Subscribe(ShowPlayerAUI)
+        PlayerSpawnB.SpawnedEvent.Subscribe(ShowPlayerBUI)
+
+        PlacerButton.InteractedWithEvent.Subscribe(PlacerButtonPressed)
+        PlacerButtonTwo.InteractedWithEvent.Subscribe(PlacerButtonTwoPressed)
+        PlacerButtonThree.InteractedWithEvent.Subscribe(PlacerButtonThreePressed)
+        PlacerButtonFour.InteractedWithEvent.Subscribe(PlacerButtonFourPressed)
+        PlacerButtonFive.InteractedWithEvent.Subscribe(PlacerButtonFivePressed)
+        PlacerButtonSix.InteractedWithEvent.Subscribe(PlacerButtonSixPressed)
+        PlacerButtonSeven.InteractedWithEvent.Subscribe(PlacerButtonSevenPressed)
+        PlacerButtonEight.InteractedWithEvent.Subscribe(PlacerButtonEightPressed)
+        PlacerButtonNine.InteractedWithEvent.Subscribe(PlacerButtonNinePressed)
+        PlacerButtonTen.InteractedWithEvent.Subscribe(PlacerButtonTenPressed)
+        PlacerButtonEleven.InteractedWithEvent.Subscribe(PlacerButtonElevenPressed)
+        PlacerButtonTwelve.InteractedWithEvent.Subscribe(PlacerButtonTwelvePressed)
+        PlacerButtonThirteen.InteractedWithEvent.Subscribe(PlacerButtonThirteenPressed)
+
+        CreaturePlacer.EliminatedEvent.Subscribe(EnableButton)
+        CreaturePlacerTwo.EliminatedEvent.Subscribe(EnableButton)
+        CreaturePlacerThree.EliminatedEvent.Subscribe(EnableButton)
+        CreaturePlacerFour.EliminatedEvent.Subscribe(EnableButtonTwo)
+        CreaturePlacerFive.EliminatedEvent.Subscribe(EnableButtonTwo)
+        CreaturePlacerSix.EliminatedEvent.Subscribe(EnableButtonTwo)
+        CreaturePlacerSeven.EliminatedEvent.Subscribe(EnableButtonThree)
+        CreaturePlacerEight.EliminatedEvent.Subscribe(EnableButtonThree)
+        CreaturePlacerNine.EliminatedEvent.Subscribe(EnableButtonThree)
+        CreaturePlacerTen.EliminatedEvent.Subscribe(EnableButtonFour)
+        CreaturePlacerEleven.EliminatedEvent.Subscribe(EnableButtonFour)
+        CreaturePlacerTwelve.EliminatedEvent.Subscribe(EnableButtonFour)
+        CreaturePlacerThirteen.EliminatedEvent.Subscribe(EnableButtonFive)
+        CreaturePlacerFourteen.EliminatedEvent.Subscribe(EnableButtonFive)
+        CreaturePlacerFifteen.EliminatedEvent.Subscribe(EnableButtonFive)
+        CreaturePlacerSixteen.EliminatedEvent.Subscribe(EnableButtonSix)
+        CreaturePlacerSeventeen.EliminatedEvent.Subscribe(EnableButtonSix)
+        CreaturePlacerEighteen.EliminatedEvent.Subscribe(EnableButtonSix)
+        CreaturePlacerNineteen.EliminatedEvent.Subscribe(EnableButtonSeven)
+        CreaturePlacerTwenty.EliminatedEvent.Subscribe(EnableButtonSeven)
+        CreaturePlacerTwentyone.EliminatedEvent.Subscribe(EnableButtonSeven)
+        CreaturePlacerTwentytwo.EliminatedEvent.Subscribe(EnableButtonEight)
+        CreaturePlacerTwentythree.EliminatedEvent.Subscribe(EnableButtonEight)
+        CreaturePlacerTwentyfour.EliminatedEvent.Subscribe(EnableButtonEight)
+        CreaturePlacerTwentyfive.EliminatedEvent.Subscribe(EnableButtonNine)
+        CreaturePlacerTwentysix.EliminatedEvent.Subscribe(EnableButtonNine)
+        CreaturePlacerTwentyseven.EliminatedEvent.Subscribe(EnableButtonNine)
+        CreaturePlacerTwentyeight.EliminatedEvent.Subscribe(EnableButtonTen)
+        CreaturePlacerTwentynine.EliminatedEvent.Subscribe(EnableButtonTen)
+        CreaturePlacerThirty.EliminatedEvent.Subscribe(EnableButtonTen)
+        CreaturePlacerThirtyone.EliminatedEvent.Subscribe(EnableButtonEleven)
+        CreaturePlacerThirtytwo.EliminatedEvent.Subscribe(EnableButtonEleven)
+        CreaturePlacerThirtythree.EliminatedEvent.Subscribe(EnableButtonEleven)
+        CreaturePlacerThirtyfour.EliminatedEvent.Subscribe(EnableButtonTwelve)
+        CreaturePlacerThirtyfive.EliminatedEvent.Subscribe(EnableButtonTwelve)
+        CreaturePlacerThirtysix.EliminatedEvent.Subscribe(EnableButtonTwelve)
+        CreaturePlacerThirtyseven.EliminatedEvent.Subscribe(EnableButtonThirteen)
+        CreaturePlacerThirtyeight.EliminatedEvent.Subscribe(EnableButtonThirteen)
+        CreaturePlacerThirtynine.EliminatedEvent.Subscribe(EnableButtonThirteen)
+
+        VendingMachineButton.InteractedWithEvent.Subscribe(ActivateVendingMachine)
+        VendingMachineButtonTwo.InteractedWithEvent.Subscribe(ActivateVendingMachineTwo)
+        VendingMachineButtonThree.InteractedWithEvent.Subscribe(ActivateVendingMachineThree)
+        VendingMachineButtonFour.InteractedWithEvent.Subscribe(ActivateVendingMachineFour)
+        VendingMachineButtonFive.InteractedWithEvent.Subscribe(ActivateVendingMachineFive)
+
+        CreatureSpawnerButton.InteractedWithEvent.Subscribe(ActivateCreatureSpawner)
+        
+        AddIncome()
+
+    AddIncome()<suspends> : void=
+        loop:
+            Sleep(30.0)
+            set TotalMoneyA += TotalIncomeA
+                Print("Income: +{TotalIncomeA}")
+                BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+            set TotalMoneyB += TotalIncomeB
+                Print("Income: +{TotalIncomeB}")
+                BillboardB.SetText(BalanceSheetText("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
+            set TotalMoneyC += TotalIncomeC
+                Print("Income: +{TotalIncomeC}")
+                BillboardC.SetText(BalanceSheetText("Money:{TotalMoneyC} Income:{TotalIncomeC}"))
+            set TotalMoneyD += TotalIncomeD
+                Print("Income: +{TotalIncomeD}")
+                BillboardD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
+    
+# PlayerA
+    # PlayerA UI
+    ShowPlayerAUI(Agent : agent) : void=
+        if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
+            PlayerUI.AddWidget(PlayerAUI)
+            PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+
+    # PlacerButton System
+    PlacerButtonPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCost) :
+            spawn {PlayerANoMoney()}
+        else:
+            spawn {SpawnGroup()}
+            set TotalMoneyA -= CreatureCost
+            set TotalIncomeA += Income
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButton.Disable()
+
+    PlayerANoMoney()<suspends> : void=
+        BillboardA.SetText(BalanceSheetText("Not enough money"))
+        PlayerAUI.SetText(TextForPlayerAUI("Not enough money"))
+            Sleep(2.0)
+                BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+    
+    SpawnGroup()<suspends> : void=
+        CreaturePlacer.Spawn()
+        CreaturePlacerTwo.Spawn()
+        CreaturePlacerThree.Spawn()
+
+    EnableButton(Agent : ?agent) : void=
+        PlacerButton.Enable()
+
+# PlayerB
+    # PlayerB UI
+    ShowPlayerBUI(Agent : agent) : void=
+        if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
+            PlayerUI.AddWidget(PlayerBUI)
+            PlayerBUI.SetText(TextForPlayerBUI("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
+    
+    # PlacerButtonTwo System
+    PlacerButtonTwoPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostTwo) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupTwo()}
+            set TotalMoneyA -= CreatureCostTwo
+            set TotalIncomeA += IncomeTwo
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonTwo.Disable()
+
+    SpawnGroupTwo()<suspends> : void=
+        CreaturePlacerFour.Spawn()
+        CreaturePlacerFive.Spawn()
+        CreaturePlacerSix.Spawn()
+
+    EnableButtonTwo(Agent : ?agent) : void=
+        PlacerButtonTwo.Enable()
+    
+    # PlacerButtonThree System
+    PlacerButtonThreePressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostThree) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupThree()}
+            set TotalMoneyA -= CreatureCostThree
+            set TotalIncomeA += IncomeThree
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonThree.Disable()
+
+    SpawnGroupThree()<suspends> : void=
+        CreaturePlacerSeven.Spawn()
+        CreaturePlacerEight.Spawn()
+        CreaturePlacerNine.Spawn()
+
+    EnableButtonThree(Agent : ?agent) : void=
+        PlacerButtonThree.Enable()
+
+    # PlacerButtonFour System
+    PlacerButtonFourPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostFour) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupFour()}
+            set TotalMoneyA -= CreatureCostFour
+            set TotalIncomeA += IncomeFour
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonFour.Disable()
+
+    SpawnGroupFour()<suspends> : void=
+        CreaturePlacerTen.Spawn()
+        CreaturePlacerEleven.Spawn()
+        CreaturePlacerTwelve.Spawn()
+
+    EnableButtonFour(Agent : ?agent) : void=
+        PlacerButtonFour.Enable()
+    
+    # PlacerButtonFive System
+    PlacerButtonFivePressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostFive) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupFive()}
+            set TotalMoneyA -= CreatureCostFive
+            set TotalIncomeA += IncomeFive
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonFive.Disable()
+
+    SpawnGroupFive()<suspends> : void=
+        CreaturePlacerThirteen.Spawn()
+        CreaturePlacerFourteen.Spawn()
+        CreaturePlacerFifteen.Spawn()
+
+    EnableButtonFive(Agent : ?agent) : void=
+        PlacerButtonFive.Enable()
+    
+    # PlacerButtonSix System
+    PlacerButtonSixPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostSix) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupSix()}
+            set TotalMoneyA -= CreatureCostSix
+            set TotalIncomeA += IncomeSix
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonSix.Disable()
+
+    SpawnGroupSix()<suspends> : void=
+        CreaturePlacerSixteen.Spawn()
+        CreaturePlacerSeventeen.Spawn()
+        CreaturePlacerEighteen.Spawn()
+
+    EnableButtonSix(Agent : ?agent) : void=
+        PlacerButtonSix.Enable()
+
+    # PlacerButtonSeven System
+    PlacerButtonSevenPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostSeven) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupSeven()}
+            set TotalMoneyA -= CreatureCostSeven
+            set TotalIncomeA += IncomeSeven
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonSeven.Disable()
+
+    SpawnGroupSeven()<suspends> : void=
+        CreaturePlacerNineteen.Spawn()
+        CreaturePlacerTwenty.Spawn()
+        CreaturePlacerTwentyone.Spawn()
+
+    EnableButtonSeven(Agent : ?agent) : void=
+        PlacerButtonSeven.Enable()
+
+    # PlacerButtonEight System
+    PlacerButtonEightPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostEight) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupEight()}
+            set TotalMoneyA -= CreatureCostEight
+            set TotalIncomeA += IncomeEight
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonEight.Disable()
+
+    SpawnGroupEight()<suspends> : void=
+        CreaturePlacerTwentytwo.Spawn()
+        CreaturePlacerTwentythree.Spawn()
+        CreaturePlacerTwentyfour.Spawn()
+
+    EnableButtonEight(Agent : ?agent) : void=
+        PlacerButtonEight.Enable()
+
+    # PlacerButtonNine System
+    PlacerButtonNinePressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostNine) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupNine()}
+            set TotalMoneyA -= CreatureCostNine
+            set TotalIncomeA += IncomeNine
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonNine.Disable()
+
+    SpawnGroupNine()<suspends> : void=
+        CreaturePlacerTwentyfive.Spawn()
+        CreaturePlacerTwentysix.Spawn()
+        CreaturePlacerTwentyseven.Spawn()
+
+    EnableButtonNine(Agent : ?agent) : void=
+        PlacerButtonNine.Enable()
+
+    # PlacerButtonTen System
+    PlacerButtonTenPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostTen) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupTen()}
+            set TotalMoneyA -= CreatureCostTen
+            set TotalIncomeA += IncomeTen
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonTen.Disable()
+
+    SpawnGroupTen()<suspends> : void=
+        CreaturePlacerTwentyeight.Spawn()
+        CreaturePlacerTwentynine.Spawn()
+        CreaturePlacerThirty.Spawn()
+
+    EnableButtonTen(Agent : ?agent) : void=
+        PlacerButtonTen.Enable()
+
+    # PlacerButtonElevn System
+    PlacerButtonElevenPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostEleven) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupEleven()}
+            set TotalMoneyA -= CreatureCostEleven
+            set TotalIncomeA += IncomeEleven
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonEleven.Disable()
+
+    SpawnGroupEleven()<suspends> : void=
+        CreaturePlacerThirtyone.Spawn()
+        CreaturePlacerThirtytwo.Spawn()
+        CreaturePlacerThirtythree.Spawn()
+
+    EnableButtonEleven(Agent : ?agent) : void=
+        PlacerButtonEleven.Enable()
+
+    # PlacerButtonTwelve System
+    PlacerButtonTwelvePressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostTwelve) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupTwelve()}
+            set TotalMoneyA -= CreatureCostTwelve
+            set TotalIncomeA += IncomeTwelve
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonTwelve.Disable()
+
+    SpawnGroupTwelve()<suspends> : void=
+        CreaturePlacerThirtyfour.Spawn()
+        CreaturePlacerThirtyfive.Spawn()
+        CreaturePlacerThirtysix.Spawn()
+
+    EnableButtonTwelve(Agent : ?agent) : void=
+        PlacerButtonTwelve.Enable()
+
+    # PlacerButtonThirteen System
+    PlacerButtonThirteenPressed(Agent : agent) : void=
+        if (TotalMoneyA < CreatureCostThirteen) {Print("Not enough money")}
+        else:
+            spawn {SpawnGroupThirteen()}
+            set TotalMoneyA -= CreatureCostThirteen
+            set TotalIncomeA += IncomeThirteen
+                Print("Total Money: {TotalMoneyA}")
+                Print("Total Income: {TotalIncomeA}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlacerButtonThirteen.Disable()
+
+    SpawnGroupThirteen()<suspends> : void=
+        CreaturePlacerThirtyseven.Spawn()
+        CreaturePlacerThirtyeight.Spawn()
+        CreaturePlacerThirtynine.Spawn()
+
+    EnableButtonThirteen(Agent : ?agent) : void=
+        PlacerButtonThirteen.Enable()
+
+    # VendingMachine
+    ActivateVendingMachine(Agent : agent) : void=
+        if (TotalMoneyA < VendingMachineGroupCost) {Print("Not enough money")}
+        else:
+            spawn {EnableVendingMachineGroup()}
+            set TotalMoneyA -= VendingMachineGroupCost
+                Print("Paid: -{VendingMachineGroupCost}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    VendingMachineButton.Disable()
+    
+    EnableVendingMachineGroup()<suspends> : void=
+        VendingMachine.Enable()
+        VendingMachineTwo.Enable()
+        VendingMachineThree.Enable()
+        VendingMachineFour.Enable()
+        VendingMachineFive.Enable()
+        VendingMachineSix.Enable()
+        VendingMachineSeven.Enable()
+        VendingMachineEight.Enable()
+    
+    # VendingMachineTwo
+    ActivateVendingMachineTwo(Agent : agent) : void=
+        if (TotalMoneyA < VendingMachineGroupCostTwo) {Print("Not enough money")}
+        else:
+            spawn {EnableVendingMachineGroupTwo()}
+            set TotalMoneyA -= VendingMachineGroupCostTwo
+                Print("Paid: -{VendingMachineGroupCostTwo}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    VendingMachineButtonTwo.Disable()
+
+    EnableVendingMachineGroupTwo()<suspends> : void=
+        VendingMachineNine.Enable()
+        VendingMachineTen.Enable()
+        VendingMachineEleven.Enable()
+        VendingMachineTwelve.Enable()
+        VendingMachineThirteen.Enable()
+        VendingMachineFourteen.Enable()
+        VendingMachineFifteen.Enable()
+        VendingMachineSixteen.Enable()
+
+    # VendingMachineThree
+    ActivateVendingMachineThree(Agent : agent) : void=
+        if (TotalMoneyA < VendingMachineGroupCostThree) {Print("Not enough money")}
+        else:
+            spawn {EnableVendingMachineGroupThree()}
+            set TotalMoneyA -= VendingMachineGroupCostThree
+                Print("Paid: -{VendingMachineGroupCostThree}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    VendingMachineButtonThree.Disable()
+
+    EnableVendingMachineGroupThree()<suspends> : void=
+        VendingMachineSeventeen.Enable()
+        VendingMachineEighteen.Enable()
+        VendingMachineNineteen.Enable()
+        VendingMachineTwenty.Enable()
+        VendingMachineTwentyone.Enable()
+        VendingMachineTwentytwo.Enable()
+        VendingMachineTwentythree.Enable()
+        VendingMachineTwentyfour.Enable()
+
+    # VendingMachineFour
+    ActivateVendingMachineFour(Agent : agent) : void=
+        if (TotalMoneyA < VendingMachineGroupCostFour) {Print("Not enough money")}
+        else:
+            spawn {EnableVendingMachineGroupFour()}
+            set TotalMoneyA -= VendingMachineGroupCostFour
+                Print("Paid: -{VendingMachineGroupCostFour}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    VendingMachineButtonFour.Disable()
+
+    EnableVendingMachineGroupFour()<suspends> : void=
+        VendingMachineTwentyfive.Enable()
+        VendingMachineTwentysix.Enable()
+        VendingMachineTwentyseven.Enable()
+        VendingMachineTwentyeight.Enable()
+        VendingMachineTwentynine.Enable()
+        VendingMachineThirty.Enable()
+        VendingMachineThirtyone.Enable()
+        VendingMachineThirtytwo.Enable()
+
+    # VendingMachineFive
+    ActivateVendingMachineFive(Agent : agent) : void=
+        if (TotalMoneyA < VendingMachineGroupCostFive) {Print("Not enough money")}
+        else:
+            spawn {EnableVendingMachineGroupFive()}
+            set TotalMoneyA -= VendingMachineGroupCostFive
+                Print("Paid: -{VendingMachineGroupCostFive}")
+                    BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    VendingMachineButtonFive.Disable()
+
+    EnableVendingMachineGroupFive()<suspends> : void=
+        VendingMachineThirtythree.Enable()
+        VendingMachineThirtyfour.Enable()
+        VendingMachineThirtyfive.Enable()
+        VendingMachineThirtysix.Enable()
+        VendingMachineThirtyseven.Enable()
+        VendingMachineThirtyeight.Enable()
+        VendingMachineThirtynine.Enable()
+        VendingMachineFourty.Enable()
+
+    # CreatureSpawnerButton
+    ActivateCreatureSpawner(Agent : agent) : void=
+        if (TotalMoneyA < CreatureSpawnerCost) {Print("Not enough money")}
+        else:
+            spawn {ActivateCreatureSpawnerGroup()}
+            set TotalMoneyA -= CreatureSpawnerCost
+                BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+
+    ActivateCreatureSpawnerGroup()<suspends> : void=
+        CreatureSpawner.Enable()
