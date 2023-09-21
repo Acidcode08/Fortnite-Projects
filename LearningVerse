@@ -176,11 +176,22 @@ Income_Arena := class(creative_device):
     @editable var BillboardD : billboard_device = billboard_device{}
 
     BalanceSheetText<localizes>(BalanceSheetMessage : string) : message = "{BalanceSheetMessage}"
-    TextForPlayerAUI<localizes>(TextForPlayerAUIMessage : string) : message = "{TextForPlayerAUIMessage}"
-    TextForPlayerBUI<localizes>(TextForPlayerBUIMessage : string) : message = "{TextForPlayerBUIMessage}"
+    TextForPlayerUI<localizes>(TextForPlayerUIMessage : string) : message = "{TextForPlayerUIMessage}"
 
     PlayerAUI : text_block = text_block{}
     PlayerBUI : text_block = text_block{}
+
+    #CreateMyUI() : canvas =
+    #    MyCanvas : canvas = canvas:
+    #        Slots := array:
+    #            canvas_slot:
+    #                Anchors := anchors{Minimum := vector2
+    #                {X := 0.5, Y := 0.5}, Maximum := vector2{X := 0.5, Y := 0.5}}
+    #                Offsets := margin{Top := 0.0, Left := 0.0, 
+    #                Right := 0.0, Bottom := 0.0}
+    #                Alignment := vector2{X := 0.5, Y := 0.5}
+    #                SizeToContent := true
+    #                Widget := button_loud{DefaultText := TextFor}
 
     # Runs when the device is started in a running game
     OnBegin<override>()<suspends>:void=
@@ -288,7 +299,7 @@ Income_Arena := class(creative_device):
     ShowPlayerAUI(Agent : agent) : void=
         if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
             PlayerUI.AddWidget(PlayerAUI)
-            PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+            PlayerAUI.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
 
     # PlacerButton System
     PlacerButtonPressed(Agent : agent) : void=
@@ -301,15 +312,15 @@ Income_Arena := class(creative_device):
                 Print("Total Money: {TotalMoneyA}")
                 Print("Total Income: {TotalIncomeA}")
                     BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlayerAUI.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
                     PlacerButton.Disable()
 
     PlayerANoMoney()<suspends> : void=
         BillboardA.SetText(BalanceSheetText("Not enough money"))
-        PlayerAUI.SetText(TextForPlayerAUI("Not enough money"))
+        PlayerAUI.SetText(TextForPlayerUI("Not enough money"))
             Sleep(2.0)
                 BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                PlayerAUI.SetText(TextForPlayerAUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                PlayerAUI.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
     
     SpawnGroup()<suspends> : void=
         CreaturePlacer.Spawn()
@@ -324,7 +335,7 @@ Income_Arena := class(creative_device):
     ShowPlayerBUI(Agent : agent) : void=
         if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
             PlayerUI.AddWidget(PlayerBUI)
-            PlayerBUI.SetText(TextForPlayerBUI("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
+            PlayerBUI.SetText(TextForPlayerUI("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
     
     # PlacerButtonTwo System
     PlacerButtonTwoPressed(Agent : agent) : void=
