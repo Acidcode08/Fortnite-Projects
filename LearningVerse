@@ -181,11 +181,11 @@ Income_Arena := class(creative_device):
     PlayerAUI : text_block = text_block{}
     PlayerBUI : text_block = text_block{}
 
-    BasicPlayerUI() : canvas =
+    BasicPlayerAUI() : canvas =
         BasicCanvas : canvas = canvas:
             Slots := array:
                 canvas_slot:
-                    Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.5}, Maximum := vector2{X := 0.5, Y := 0.5}}
+                    Anchors := anchors{Minimum := vector2{X := 300.0, Y := 100.0}, Maximum := vector2{X := 100.0, Y := 40.0}}
                     Offsets := margin{Top := 0.0, Left := 0.0, Right := 0.0, Bottom := 0.0}
                     Alignment := vector2{X := 0.5, Y := 0.5}
                     SizeToContent := true
@@ -297,7 +297,7 @@ Income_Arena := class(creative_device):
     # PlayerA UI
     ShowPlayerAUI(Agent : agent) : void=
         if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
-            PlayerUI.AddWidget(BasicPlayerUI())
+            PlayerUI.AddWidget(BasicPlayerAUI())
             PlayerAUI.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
 
     # PlacerButton System
