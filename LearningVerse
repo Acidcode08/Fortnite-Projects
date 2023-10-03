@@ -305,7 +305,7 @@ Income_Arena := class(creative_device):
         CreatureSpawnerButton.InteractedWithEvent.Subscribe(ActivateCreatureSpawner)
         
         AddIncome()
-        CountDownTimer()
+    #    CountDownTimer()
 
     AddIncome()<suspends> : void=
         loop:
@@ -323,12 +323,14 @@ Income_Arena := class(creative_device):
                 Print("Income: +{TotalIncomeD}")
                 BillboardD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
     
-    CountDownTimer()<suspends> : void=
-        loop:
-            Sleep(1.0)
-            set CountDownTime =- TimePerSecond
-                if (CountDownTime < TimePerSecond) :
-                    set CountDownTime = 30
+    #CountDownTimer()<suspends> : void=
+    #    loop:
+    #        Sleep(1.0)
+    #        set CountDownTime =- TimePerSecond
+    #            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
+    #        if (CountDownTime < TimePerSecond) :
+    #            set CountDownTime = 30
+    #                PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
 
     
 # PlayerA
