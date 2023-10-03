@@ -57,6 +57,10 @@ Income_Arena := class(creative_device):
     IncomeTwelve : int = 120
     IncomeThirteen : int = 600
 
+    var CountDownTime : float = 0.0
+    var TotalCountDownTime : float = 30.0
+    var TimePerSecond : float = 1.0
+
     @editable var PlayerSpawnA : player_spawner_device = player_spawner_device{}
     @editable var PlayerSpawnB : player_spawner_device = player_spawner_device{}
     # @editable var PlayerSpawnC : player_spawner_device = player_spawner_device{}
@@ -177,7 +181,7 @@ Income_Arena := class(creative_device):
 
     BalanceSheetText<localizes>(BalanceSheetMessage : string) : message = "{BalanceSheetMessage}"
     TextForPlayerUI<localizes>(TextForPlayerUIMessage : string) : message = "{TextForPlayerUIMessage}"
-
+    
     PlayerUITop : button_loud = button_loud{}
     PlayerUIMiddle : button_loud = button_loud{}
     PlayerUIBottom : button_loud = button_loud{}
@@ -299,6 +303,7 @@ Income_Arena := class(creative_device):
         CreatureSpawnerButton.InteractedWithEvent.Subscribe(ActivateCreatureSpawner)
         
         AddIncome()
+        CountDownTimer()
 
     AddIncome()<suspends> : void=
         loop:
@@ -316,6 +321,17 @@ Income_Arena := class(creative_device):
                 Print("Income: +{TotalIncomeD}")
                 BillboardD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
     
+    CountDownTimer()<suspends> : void=
+        loop:
+            Sleep(1.0)
+            if (TotalCountDownTime >= TimePerSecond) :
+                set CountDownTime = TotalCountDownTime - TimePerSecond
+            else:
+                set CountDownTime = TotalCountDownTime
+        
+    #IncomeTimer() : void=
+
+    
 # PlayerA
     # PlayerA UI
     ShowPlayerAUI(Agent : agent) : void=
@@ -323,9 +339,9 @@ Income_Arena := class(creative_device):
             PlayerUI.AddWidget(BasicPlayerUITop())
             PlayerUI.AddWidget(BasicPlayerUIMiddle())
             PlayerUI.AddWidget(BasicPlayerUIBottom())
-            PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-            PlayerUIMiddle.SetText(TextForPlayerUI("Income Tax: xxx  Income After Tax: xxx"))
-            PlayerUIBottom.SetText(TextForPlayerUI("TeamA Income: xxx  TeamA Budget: xxx"))
+            PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA}"))
+            PlayerUIMiddle.SetText(TextForPlayerUI("Income:{TotalIncomeA}"))
+            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime}sec"))
 
     # PlacerButton System
     PlacerButtonPressed(Agent : agent) : void=
