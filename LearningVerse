@@ -57,9 +57,8 @@ Income_Arena := class(creative_device):
     IncomeTwelve : int = 120
     IncomeThirteen : int = 600
 
-    var CountDownTime : float = 0.0
-    var TotalCountDownTime : float = 30.0
-    var TimePerSecond : float = 1.0
+    var CountDownTime : int = 0
+    var TimePerSecond : int = 0
 
     @editable var PlayerSpawnA : player_spawner_device = player_spawner_device{}
     @editable var PlayerSpawnB : player_spawner_device = player_spawner_device{}
@@ -232,6 +231,9 @@ Income_Arena := class(creative_device):
         set TotalIncomeC = 1
         set TotalIncomeD = 1
 
+        set CountDownTime = 30
+        set TimePerSecond = 1
+
         BillboardA.SetText(BalanceSheetText("Money: {TotalMoneyA}  Income: {TotalIncomeA}"))
         BillboardB.SetText(BalanceSheetText("Money: {TotalMoneyB}  Income: {TotalIncomeB}"))
     #    BillboardC.SetText(BalanceSheetText("Money: {TotalMoneyC}  Income: {TotalIncomeC}"))
@@ -324,12 +326,9 @@ Income_Arena := class(creative_device):
     CountDownTimer()<suspends> : void=
         loop:
             Sleep(1.0)
-            if (TotalCountDownTime >= TimePerSecond) :
-                set CountDownTime = TotalCountDownTime - TimePerSecond
-            else:
-                set CountDownTime = TotalCountDownTime
-        
-    #IncomeTimer() : void=
+            set CountDownTime =- TimePerSecond
+                if (CountDownTime < TimePerSecond) :
+                    set CountDownTime = 30
 
     
 # PlayerA
@@ -341,7 +340,7 @@ Income_Arena := class(creative_device):
             PlayerUI.AddWidget(BasicPlayerUIBottom())
             PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA}"))
             PlayerUIMiddle.SetText(TextForPlayerUI("Income:{TotalIncomeA}"))
-            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime}sec"))
+            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
 
     # PlacerButton System
     PlacerButtonPressed(Agent : agent) : void=
