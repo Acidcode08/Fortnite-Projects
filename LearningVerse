@@ -57,7 +57,7 @@ Income_Arena := class(creative_device):
     IncomeTwelve : int = 120
     IncomeThirteen : int = 600
 
-    var CountDownTime : int = 0
+    var TimeTillNextIncome : int = 0
     var TimePerSecond : int = 0
 
     @editable var PlayerSpawnA : player_spawner_device = player_spawner_device{}
@@ -178,6 +178,8 @@ Income_Arena := class(creative_device):
     @editable var BillboardC : billboard_device = billboard_device{}
     @editable var BillboardD : billboard_device = billboard_device{}
 
+    @editable IncomeTimer : timer_device = timer_device{}
+
     BalanceSheetText<localizes>(BalanceSheetMessage : string) : message = "{BalanceSheetMessage}"
     TextForPlayerUI<localizes>(TextForPlayerUIMessage : string) : message = "{TextForPlayerUIMessage}"
     
@@ -207,16 +209,16 @@ Income_Arena := class(creative_device):
                     Widget := PlayerUIMiddle
         return BasicCanvas
     
-    BasicPlayerUIBottom() : canvas =
-        BasicCanvas : canvas = canvas:
-            Slots := array:
-                canvas_slot:
-                    Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.5}, Maximum := vector2{X := 0.5, Y := 0.5}}
-                    Offsets := margin{Top := -200.0, Left := -400.0, Right := 0.0, Bottom := 0.0}
-                    Alignment := vector2{X := 0.5, Y := 0.5}
-                    SizeToContent := true
-                    Widget := PlayerUIBottom
-        return BasicCanvas
+    #BasicPlayerUIBottom() : canvas =
+    #    BasicCanvas : canvas = canvas:
+    #        Slots := array:
+    #            canvas_slot:
+    #                Anchors := anchors{Minimum := vector2{X := 0.5, Y := 0.5}, Maximum := vector2{X := 0.5, Y := 0.5}}
+    #                Offsets := margin{Top := -200.0, Left := -400.0, Right := 0.0, Bottom := 0.0}
+    #                Alignment := vector2{X := 0.5, Y := 0.5}
+    #                SizeToContent := true
+    #                Widget := PlayerUIBottom
+    #    return BasicCanvas
 
     # Runs when the device is started in a running game
     OnBegin<override>()<suspends>:void=
@@ -230,9 +232,6 @@ Income_Arena := class(creative_device):
         set TotalIncomeB = 1
         set TotalIncomeC = 1
         set TotalIncomeD = 1
-
-        set CountDownTime = 30
-        set TimePerSecond = 1
 
         BillboardA.SetText(BalanceSheetText("Money: {TotalMoneyA}  Income: {TotalIncomeA}"))
         BillboardB.SetText(BalanceSheetText("Money: {TotalMoneyB}  Income: {TotalIncomeB}"))
@@ -305,7 +304,6 @@ Income_Arena := class(creative_device):
         CreatureSpawnerButton.InteractedWithEvent.Subscribe(ActivateCreatureSpawner)
         
         AddIncome()
-    #    CountDownTimer()
 
     AddIncome()<suspends> : void=
         loop:
@@ -313,6 +311,9 @@ Income_Arena := class(creative_device):
             set TotalMoneyA += TotalIncomeA
                 Print("Income: +{TotalIncomeA}")
                 BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                PlayerUITop.SetText(TextForPlayerUI("Money: +{TotalIncomeA}"))
+                    Sleep(1.0)
+                    PlayerUITop.SetText(TextForPlayerUI("Money: {TotalMoneyA}"))
             set TotalMoneyB += TotalIncomeB
                 Print("Income: +{TotalIncomeB}")
                 BillboardB.SetText(BalanceSheetText("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
@@ -322,16 +323,7 @@ Income_Arena := class(creative_device):
             set TotalMoneyD += TotalIncomeD
                 Print("Income: +{TotalIncomeD}")
                 BillboardD.SetText(BalanceSheetText("Money:{TotalMoneyD} Income:{TotalIncomeD}"))
-    
-    #CountDownTimer()<suspends> : void=
-    #    loop:
-    #        Sleep(1.0)
-    #        set CountDownTime =- TimePerSecond
-    #            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
-    #        if (CountDownTime < TimePerSecond) :
-    #            set CountDownTime = 30
-    #                PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
-
+            
     
 # PlayerA
     # PlayerA UI
@@ -339,10 +331,8 @@ Income_Arena := class(creative_device):
         if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
             PlayerUI.AddWidget(BasicPlayerUITop())
             PlayerUI.AddWidget(BasicPlayerUIMiddle())
-            PlayerUI.AddWidget(BasicPlayerUIBottom())
-            PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA}"))
-            PlayerUIMiddle.SetText(TextForPlayerUI("Income:{TotalIncomeA}"))
-            PlayerUIBottom.SetText(TextForPlayerUI("Next Income in: {CountDownTime} sec"))
+            PlayerUITop.SetText(TextForPlayerUI("Money: {TotalMoneyA}"))
+            PlayerUIMiddle.SetText(TextForPlayerUI("Income: {TotalIncomeA}"))
 
     # PlacerButton System
     PlacerButtonPressed(Agent : agent) : void=
@@ -355,7 +345,8 @@ Income_Arena := class(creative_device):
                 Print("Total Money: {TotalMoneyA}")
                 Print("Total Income: {TotalIncomeA}")
                     BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                    PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                    PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA}"))
+                    PlayerUIMiddle.SetText(TextForPlayerUI("Income:{TotalIncomeA}"))
                     PlacerButton.Disable()
 
     PlayerANoMoney()<suspends> : void=
@@ -363,7 +354,7 @@ Income_Arena := class(creative_device):
         PlayerUITop.SetText(TextForPlayerUI("Not enough money"))
             Sleep(2.0)
                 BillboardA.SetText(BalanceSheetText("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
-                PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA} Income:{TotalIncomeA}"))
+                PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyA}"))
     
     SpawnGroup()<suspends> : void=
         CreaturePlacer.Spawn()
@@ -730,7 +721,5 @@ Income_Arena := class(creative_device):
         if (InPlayer := player[Agent], PlayerUI := GetPlayerUI[InPlayer]):
             PlayerUI.AddWidget(BasicPlayerUITop())
             PlayerUI.AddWidget(BasicPlayerUIMiddle())
-            PlayerUI.AddWidget(BasicPlayerUIBottom())
-            PlayerUITop.SetText(TextForPlayerUI("Money:{TotalMoneyB} Income:{TotalIncomeB}"))
-            PlayerUIMiddle.SetText(TextForPlayerUI("Income Tax: xxx  Income After Tax: xxx"))
-            PlayerUIBottom.SetText(TextForPlayerUI("TeamB Income: xxx  TeamB Budget: xxx"))
+            PlayerUITop.SetText(TextForPlayerUI("Money: {TotalMoneyB}"))
+            PlayerUIMiddle.SetText(TextForPlayerUI("Income: {TotalIncomeB}"))
